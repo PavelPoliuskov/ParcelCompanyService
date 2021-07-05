@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>main page</title>
+</head>
+<body>
+
+<h3>Parcel Company Service</h3>
+<hr>
+
+<table>
+    <tr>
+        <td>
+            <table border="1">
+                <a th:href="@{/showFormForAdd}">
+                    Add Truck
+                </a>
+                <thehead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Total Weight</th>
+                        <th>Number of Parcels</th>
+                        <th>Route</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thehead>
+                <tbody>
+                <tr th:each="tempTruck : ${trucks}">
+                    <td th:text="${tempTruck.id}"/>
+                    <td th:text="${tempTruck.weight}"/>
+                    <td th:text="${tempTruck.numberOfParcels}"></td>
+                    <td th:text="${tempTruck.startingPoint} + ' - ' + ${tempTruck.destination}"/>
+                    <td>
+                        <a th:href="@{/showFormForUpdate(truckId=${tempTruck.id})}">Update</a>
+                        <a th:href="@{/delete(truckId=${tempTruck.id})}">Delete</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table border="1">
+                <a th:href="@{/showFormForAddingParcel}">
+                    Add Parcel
+                </a>
+                <thehead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Weight</th>
+                        <th>Action</th>
+                    </tr>
+                </thehead>
+                <tbody>
+                <tr th:each="tempParcel : ${parcels}">
+                    <td th:text="${tempParcel.id}"/>
+                    <td th:text="${tempParcel.weight}"/>
+                    <td>
+                        <a th:href="@{/showFormForUpdatingParcel(parcelId=${tempParcel.id})}">Update</a>
+                        <a th:href="@{/deleteParcel(parcelId=${tempParcel.id})}">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+
+            <table border="1">
+                <thehead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Weight</th>
+                    </tr>
+                </thehead>
+                <tbody>
+                <tr th:each="tempAvailableParcel : ${availableParcels}">
+                    <td th:text="${tempAvailableParcel.id}"/>
+                    <td th:text="${tempAvailableParcel.weight}"/>
+                </tr>
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

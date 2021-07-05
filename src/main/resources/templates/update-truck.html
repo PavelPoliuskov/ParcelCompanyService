@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Truck</title>
+</head>
+
+<body>
+<h2>Update truck</h2>
+<hr>
+<form action="#" th:action="@{/updateTruck}" th:object="${truck}" method="post">
+    <input type="hidden" th:field="*{id}" th:value="*{id}">
+    <input type="hidden" th:field="*{weight}" th:value="*{weight}">
+    <input type="text" th:field="*{startingPoint}" placeholder="Starting Point">
+    <input type="text" th:field="*{destination}" placeholder="Destination">
+    <button type="submit">Save</button>
+</form>
+<hr>
+<table>
+    <tr>
+        <td>
+            <table border="1">
+                <h3>Loaded parcels</h3>
+                <thehead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Weight</th>
+                        <th>Action</th>
+                    </tr>
+                </thehead>
+                <tbody>
+                <tr th:each="tempParcel : ${theParcels}">
+                    <td th:text="${tempParcel.id}"/>
+                    <td th:text="${tempParcel.weight}"/>
+                    <td>
+                        <a th:href="@{/showFormForUpdate/{truckId}/delivered (truckId=${truck.id}, parcelId=${tempParcel.id})}">Delivered</a>
+                        <a th:href="@{/showFormForUpdate/{truckId}/undelivered (truckId=${truck.id}, parcelId=${tempParcel.id})}">Undelivered</a>
+                    </td>
+                    <hr>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table border="1">
+                <h3>Available parcels</h3>
+                <thehead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Weight</th>
+                        <th>Action</th>
+                    </tr>
+                </thehead>
+                <tbody>
+                <tr th:each="tempAvailableParcel : ${availableParcels}">
+                    <td th:text="${tempAvailableParcel.id}"/>
+                    <td th:text="${tempAvailableParcel.weight}"/>
+                    <td>
+                        <a th:href="@{/showFormForUpdate/{truckId}/truckLoad (truckId=${truck.id}, parcelId=${tempAvailableParcel.id})}"><span>Load</span></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+</table>
+<hr>
+<a th:href="@{/}">Back</a>
+
+
+</body>
+</html>

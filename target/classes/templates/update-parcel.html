@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Parcel</title>
+</head>
+<body>
+<h3>Update Parcel</h3>
+<hr>
+<form action="#" th:action="@{/updateParcel}" th:object="${parcel}" method="post">
+    <input type="hidden" th:field="*{id}" th:value="*{id}">
+    <input type="text" th:field="*{weight}" placeholder="Weight">
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+<a th:href="@{/}">Back</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Truck</title>
+</head>
+
+<body>
+<h3>Add Truck</h3>
+<hr>
+<form action="#" th:action="@{/saveTruck}" th:object="${truck}" method="post">
+    <input type="text" th:field="*{id}" placeholder="Identification number">
+    <span th:if="${errorMessage}" th:text="${errorMessage}">Error</span>
+    <input type="hidden" th:field="*{weight}" value="0">
+    <input type="text" th:field="*{startingPoint}" placeholder="Starting Point">
+    <input type="text" th:field="*{destination}" placeholder="Destination">
+    <button type="submit">Save</button>
+</form>
+<hr>
+
+<a th:href="@{/}">Back</a>
+
+
+</body>
+</html>

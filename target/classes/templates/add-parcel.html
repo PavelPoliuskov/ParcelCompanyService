@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Parcel</title>
+</head>
+
+<body>
+<h3>Add Parcel</h3>
+<hr>
+<form action="#" th:action="@{/saveParcel}" th:object="${parcel}" method="post">
+    <input type="text" th:field="*{id}" placeholder="Identification number">
+    <span th:if="${errorMessage}" th:text="${errorMessage}">Error</span>
+    <input type="text" th:field="*{weight}" placeholder="Weight">
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+<a th:href="@{/}">Back</a>
+
+
+</body>
+</html>
