@@ -1,4 +1,4 @@
-package Exercise.Entity;
+package Exercise.entities;
 
 public class Parcel {
 

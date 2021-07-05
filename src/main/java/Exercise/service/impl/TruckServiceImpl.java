@@ -1,7 +1,8 @@
-package Exercise.Service;
+package Exercise.service.impl;
 
-import Exercise.Entity.Parcel;
-import Exercise.Entity.Truck;
+import Exercise.entities.Parcel;
+import Exercise.entities.Truck;
+import Exercise.service.TruckService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,7 +46,6 @@ public class TruckServiceImpl implements TruckService {
         List <Parcel> theParcels = theTruck.getParcels();
         theParcels.removeIf(parcel1 -> parcel1.getId().equals(parcel1.getId()));
         theTruck.setParcels(theParcels);
-        System.out.println("size of the parcel list: " + theParcels.size());
     }
 
 }

@@ -1,11 +1,11 @@
-package Exercise.Controller;
+package Exercise.controller;
 
 
-import Exercise.Entity.Parcel;
-import Exercise.Entity.Truck;
-import Exercise.Service.AvailableParcelServiceImpl;
-import Exercise.Service.ParcelServiceImpl;
-import Exercise.Service.TruckService;
+import Exercise.entities.Parcel;
+import Exercise.entities.Truck;
+import Exercise.service.impl.AvailableParcelServiceImpl;
+import Exercise.service.impl.ParcelServiceImpl;
+import Exercise.service.TruckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class MainController {
 
     @Autowired
@@ -60,10 +60,6 @@ public class MainController {
         availableParcelService.saveParcel(p4);
         availableParcelService.saveParcel(p5);
 
-        truckService.loadTheTruck(1, p1);
-        truckService.unloadTheTruck(1, p1);
-        System.out.println("Number of parcels: " + t1.getParcels().size());
-        System.out.println("weight of the 1st truck: " + t1.getWeight());
     }
 
 

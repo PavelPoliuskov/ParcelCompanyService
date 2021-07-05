@@ -1,7 +1,7 @@
-package Exercise.Service;
+package Exercise.service;
 
-import Exercise.Entity.Parcel;
-import Exercise.Entity.Truck;
+import Exercise.entities.Parcel;
+import Exercise.entities.Truck;
 
 import java.util.List;
 

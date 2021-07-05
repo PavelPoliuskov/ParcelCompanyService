@@ -1,10 +1,10 @@
-package Exercise.Controller;
+package Exercise.controller;
 
-import Exercise.Entity.Parcel;
-import Exercise.Entity.Truck;
-import Exercise.Service.AvailableParcelServiceImpl;
-import Exercise.Service.ParcelService;
-import Exercise.Service.TruckService;
+import Exercise.entities.Parcel;
+import Exercise.entities.Truck;
+import Exercise.service.impl.AvailableParcelServiceImpl;
+import Exercise.service.ParcelService;
+import Exercise.service.TruckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -49,8 +49,6 @@ public class TruckController {
 
         truckService.loadTheTruck(truckId, parcelServiceImpl.getParcel(parcelId));
         availableParcelService.deleteParcel(parcelId);
-
-        System.out.println("number of parcels: " + theParcels.size());
 
         return "update-truck";
     }

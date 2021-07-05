@@ -1,14 +1,13 @@
-package Exercise.Service;
+package Exercise.service.impl;
 
-import Exercise.Entity.Parcel;
-import org.springframework.stereotype.Component;
+import Exercise.entities.Parcel;
+import Exercise.service.ParcelService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Component("availableParcelServiceImpl")
 public class AvailableParcelServiceImpl implements ParcelService {
 
     private List <Parcel> availableParcels = new ArrayList();
@@ -27,12 +26,11 @@ public class AvailableParcelServiceImpl implements ParcelService {
         availableParcels.add(theParcel);
     }
 
-    public Parcel getParcel(Integer theId) {
-        Parcel theParcel = availableParcels.stream().filter(parcel -> parcel.getId().equals(theId)).findAny().orElse(null);
-        return theParcel;
+    public Parcel getParcel(Integer parcelId) {
+        return availableParcels.stream().filter(parcel -> parcel.getId().equals(parcelId)).findAny().orElse(null);
     }
 
-    public void deleteParcel(Integer theId) {
-        availableParcels.removeIf((Parcel parcel) -> parcel.getId() == theId);
+    public void deleteParcel(Integer parcelId) {
+        availableParcels.removeIf((Parcel parcel) -> parcel.getId().equals(parcelId));
     }
 }
