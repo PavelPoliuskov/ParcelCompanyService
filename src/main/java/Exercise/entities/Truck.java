@@ -1,8 +1,13 @@
 package Exercise.entities;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
+@Data
 public class Truck {
 
     private Integer id;
@@ -14,21 +19,6 @@ public class Truck {
     public int getNumberOfParcels (){
         return parcels.size();
     }
-    public List<Parcel> getParcels() {
-        return parcels;
-    }
-
-    public void setParcels(List<Parcel> parcels) {
-        this.parcels = parcels;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public int getWeight() {
         weight = 0;
@@ -38,26 +28,6 @@ public class Truck {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public String getStartingPoint() {
-        return startingPoint;
-    }
-
-    public void setStartingPoint(String startingPoint) {
-        this.startingPoint = startingPoint;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
     public Truck(Integer id, int weight, String startingPoint, String destination) {
         this.id = id;
         this.weight = weight;
@@ -65,6 +35,4 @@ public class Truck {
         this.destination = destination;
     }
 
-    public Truck() {
-    }
 }

@@ -19,6 +19,6 @@ public interface TruckService {
 
     public void loadTheTruck (Integer theId, Parcel parcel);
 
-    public void unloadTheTruck(Integer theId, Parcel parcel);
+    public void unloadTheTruck(Integer theId, Integer parcelId);
 
 }

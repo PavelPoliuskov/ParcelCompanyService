@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -135,7 +139,7 @@ public class MainController {
         availableParcelService.updateParcel(theParcel);
         for (Truck truck : truckService.getTrucks()){
             for (Parcel parcel : truck.getParcels()){
-                if (parcel.getId() == theParcel.getId()){
+                if (parcel.getId().equals(theParcel.getId())){
                     parcel.setWeight(theParcel.getWeight());
                 }
             }
@@ -154,7 +158,7 @@ public class MainController {
     public String deleteParcel(@RequestParam("parcelId") Integer theId) {
         parcelServiceImpl.deleteParcel(theId);
         availableParcelService.deleteParcel(theId);
-        truckService.getTrucks().forEach(truck -> truck.getParcels().removeIf((Parcel parcel) -> parcel.getId() == theId));
+        truckService.getTrucks().forEach(truck -> truck.getParcels().removeIf((Parcel parcel) -> parcel.getId().equals(theId)));
         return "redirect:/";
 
     }

@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -63,7 +66,8 @@ public class TruckController {
         model.addAttribute("availableParcels", theAvailableParcels);
 
         parcelServiceImpl.deleteParcel(parcelId);
-        truckService.unloadTheTruck(truckId, parcelServiceImpl.getParcel(parcelId));
+        truckService.unloadTheTruck(truckId, parcelId);
+
         return "update-truck";
     }
 
@@ -77,7 +81,8 @@ public class TruckController {
         model.addAttribute("availableParcels", theAvailableParcels);
 
         availableParcelService.saveParcel(parcelServiceImpl.getParcel(parcelId));
-        truckService.unloadTheTruck(truckId, parcelServiceImpl.getParcel(parcelId));
+        truckService.unloadTheTruck(truckId, parcelId);
+
         return "update-truck";
     }
 

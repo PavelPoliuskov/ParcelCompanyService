@@ -28,12 +28,11 @@ public class ParcelServiceImpl implements ParcelService {
     }
 
     public Parcel getParcel(Integer parcelId) {
-        Parcel theParcel = parcels.stream().filter(parcel -> parcel.getId().equals(parcelId)).findAny().orElse(null);
-        return theParcel;
+        return parcels.stream().filter(parcel -> parcel.getId().equals(parcelId)).findAny().orElse(null);
     }
 
     public void deleteParcel(Integer parcelId) {
-        parcels.removeIf((Parcel parcel) -> parcel.getId() == parcelId);
+        parcels.removeIf((Parcel parcel) -> parcel.getId().equals(parcelId));
 
     }
 }

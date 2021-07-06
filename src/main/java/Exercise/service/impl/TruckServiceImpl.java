@@ -41,10 +41,10 @@ public class TruckServiceImpl implements TruckService {
         theTruck.setParcels(theParcels);
     }
 
-    public void unloadTheTruck(Integer truckId, Parcel parcel) {
+    public void unloadTheTruck(Integer truckId, Integer parcelId) {
         Truck theTruck = trucks.stream().filter(truck -> truck.getId().equals(truckId)).findAny().orElse(null);
         List <Parcel> theParcels = theTruck.getParcels();
-        theParcels.removeIf(parcel1 -> parcel1.getId().equals(parcel1.getId()));
+        theParcels.removeIf(parcel -> parcel.getId().equals(parcelId));
         theTruck.setParcels(theParcels);
     }
 
