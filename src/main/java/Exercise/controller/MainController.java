@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -70,12 +71,15 @@ public class MainController {
     @GetMapping
     public String listTrucks(Model model){
         List <Truck> theTrucks = truckService.getTrucks();
+        theTrucks.sort(Comparator.comparingInt(Truck::getId));
         model.addAttribute("trucks", theTrucks);
 
         List <Parcel> theParcels = parcelServiceImpl.getParcels();
+        theParcels.sort(Comparator.comparing(Parcel::getId));
         model.addAttribute("parcels", theParcels);
 
         List <Parcel> theAvailableParcels = availableParcelService.getParcels();
+        theAvailableParcels.sort(Comparator.comparing(Parcel::getId));
         model.addAttribute("availableParcels", theAvailableParcels);
 
         return "main";

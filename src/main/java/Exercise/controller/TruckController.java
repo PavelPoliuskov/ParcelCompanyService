@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -33,8 +34,10 @@ public class TruckController {
     public String showFormForUpdate (@RequestParam("truckId") Integer theId, Model model) {
         Truck theTruck = truckService.getTruck(theId);
         model.addAttribute("truck", theTruck);
+
         List<Parcel> theParcels = truckService.getTruck(theId).getParcels();
         model.addAttribute("theParcels", theParcels);
+
         List <Parcel> theAvailableParcels = availableParcelService.getParcels();
         model.addAttribute("availableParcels", theAvailableParcels);
 
@@ -45,8 +48,10 @@ public class TruckController {
     public String loadParcel(@PathVariable("truckId") Integer truckId, @RequestParam("parcelId") Integer parcelId, Model model) {
         Truck theTruck = truckService.getTruck(truckId);
         model.addAttribute("truck", theTruck);
+
         List<Parcel> theParcels = truckService.getTruck(truckId).getParcels();
         model.addAttribute("theParcels", theParcels);
+
         List <Parcel> theAvailableParcels = availableParcelService.getParcels();
         model.addAttribute("availableParcels", theAvailableParcels);
 
@@ -60,8 +65,10 @@ public class TruckController {
     public String deliveredParcel(@PathVariable("truckId") Integer truckId, @RequestParam("parcelId") Integer parcelId, Model model) {
         Truck theTruck = truckService.getTruck(truckId);
         model.addAttribute("truck", theTruck);
+
         List<Parcel> theParcels = truckService.getTruck(truckId).getParcels();
         model.addAttribute("theParcels", theParcels);
+
         List <Parcel> theAvailableParcels = availableParcelService.getParcels();
         model.addAttribute("availableParcels", theAvailableParcels);
 
@@ -75,13 +82,17 @@ public class TruckController {
     public String undeliveredParcel(@PathVariable("truckId") Integer truckId, @RequestParam("parcelId") Integer parcelId, Model model) {
         Truck theTruck = truckService.getTruck(truckId);
         model.addAttribute("truck", theTruck);
+
         List<Parcel> theParcels = truckService.getTruck(truckId).getParcels();
         model.addAttribute("theParcels", theParcels);
+
         List <Parcel> theAvailableParcels = availableParcelService.getParcels();
         model.addAttribute("availableParcels", theAvailableParcels);
 
         availableParcelService.saveParcel(parcelServiceImpl.getParcel(parcelId));
         truckService.unloadTheTruck(truckId, parcelId);
+
+        theAvailableParcels.sort(Comparator.comparing(Parcel::getId));
 
         return "update-truck";
     }
